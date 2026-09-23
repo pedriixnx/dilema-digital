@@ -1,1125 +1,1267 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Dilema Digital</title>
-
-    <style>
-        /* =========================
-           CONFIGURAÇÕES GERAIS
-        ========================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080812;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        /* =========================
-           MENU
-        ========================== */
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(8, 8, 18, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        nav {
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #8b5cf6;
-        }
-
-        .logo span {
-            color: #22d3ee;
-        }
-
-        .menu {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .menu a {
-            color: #ddd;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .menu a:hover {
-            color: #22d3ee;
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(139,92,246,0.25), transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(34,211,238,0.18), transparent 30%),
-                #080812;
-        }
-
-        .hero-content {
-            width: 100%;
-        }
-
-        .hero h1 {
-            font-size: clamp(55px, 10vw, 120px);
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, #8b5cf6, #22d3ee);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 750px;
-            margin: auto;
-            font-size: 20px;
-            color: #c7c7d1;
-        }
-
-        .hero-button {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 15px 30px;
-            border-radius: 30px;
-            background: linear-gradient(90deg, #7c3aed, #0891b2);
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .hero-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(34,211,238,0.25);
-        }
-
-        /* =========================
-           SEÇÕES
-        ========================== */
-
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #9ca3af;
-        }
-
-        /* =========================
-           SOBRE
-        ========================== */
-
-        .about {
-            background: #0c0c18;
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 18px;
-            color: #c7c7d1;
-        }
-
-        .highlight {
-            color: #22d3ee;
-            font-weight: bold;
-        }
-
-        /* =========================
-           CARDS
-        ========================== */
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .card {
-            background: #11111f;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #8b5cf6;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .card-icon {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .card p {
-            color: #a9a9b5;
-        }
-
-        /* =========================
-           IA
-        ========================== */
-
-        .ai-section {
-            background:
-                linear-gradient(rgba(8,8,18,0.95), rgba(8,8,18,0.95)),
-                radial-gradient(circle, #7c3aed, transparent);
-        }
-
-        .ai-box {
-            max-width: 900px;
-            margin: auto;
-            padding: 40px;
-            border-radius: 20px;
-            background: #11111f;
-            border: 1px solid rgba(139,92,246,0.4);
-        }
-
-        .ai-box ul {
-            margin-top: 20px;
-            padding-left: 25px;
-        }
-
-        .ai-box li {
-            margin-bottom: 10px;
-            color: #c7c7d1;
-        }
-
-        /* =========================
-           DILEMA INTERATIVO
-        ========================== */
-
-        .dilema {
-            background: #0c0c18;
-        }
-
-        .question-box {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-            padding: 50px 30px;
-            border-radius: 25px;
-            background: linear-gradient(145deg, #151526, #0e0e19);
-            border: 1px solid rgba(34,211,238,0.2);
-        }
-
-        .question-box h3 {
-            font-size: 27px;
-            margin-bottom: 30px;
-        }
-
-        .choices {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .choice {
-            border: none;
-            padding: 17px;
-            border-radius: 12px;
-            background: #1b1b2d;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .choice:hover {
-            background: #7c3aed;
-            transform: scale(1.02);
-        }
-
-        #resultado {
-            margin-top: 25px;
-            font-size: 18px;
-            color: #22d3ee;
-            font-weight: bold;
-            min-height: 30px;
-        }
-
-        /* =========================
-           USO CONSCIENTE
-        ========================== */
-
-        .tips {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .tip {
-            padding: 25px;
-            background: #11111f;
-            border-radius: 15px;
-            border-left: 4px solid #22d3ee;
-        }
-
-        .tip h3 {
-            margin-bottom: 8px;
-        }
-
-        .tip p {
-            color: #a9a9b5;
-        }
-
-        /* =========================
-           CONCLUSÃO
-        ========================== */
-
-        .conclusion {
-            text-align: center;
-            background:
-                radial-gradient(circle at center, rgba(124,58,237,0.2), transparent 50%),
-                #080812;
-        }
-
-        .conclusion p {
-            max-width: 800px;
-            margin: auto;
-            font-size: 20px;
-            color: #c7c7d1;
-        }
-
-        .final-text {
-            margin-top: 30px;
-            font-size: 28px !important;
-            font-weight: bold;
-            color: white !important;
-        }
-
-        /* =========================
-           RODAPÉ
-        ========================== */
-
-        footer {
-            padding: 30px;
-            text-align: center;
-            background: #05050b;
-            color: #777;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        footer span {
-            color: #8b5cf6;
-        }
-
-        /* =========================
-           ANIMAÇÃO
-        ========================== */
-
-        .fade {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.8s;
-        }
-
-        .fade.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================
-           RESPONSIVO
-        ========================== */
-
-        @media (max-width: 850px) {
-
-            .menu {
-                display: none;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .tips {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 60px;
-            }
-
-            .hero p {
-                font-size: 17px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dilema Digital</title>
+
+<style>
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: white;
+}
+
+
+/* ==============================
+   MENU
+================================ */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    padding: 18px 25px;
+
+    background: rgba(5,5,5,0.94);
+
+    border-bottom: 1px solid #333;
+
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin-bottom: 12px;
+    font-size: 28px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #222;
+    color: white;
+}
+
+
+/* ==============================
+   PÁGINA INICIAL
+================================ */
+
+.inicio {
+    min-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(circle at 15% 20%, #5725a5, transparent 30%),
+        radial-gradient(circle at 85% 70%, #087f91, transparent 30%),
+        linear-gradient(135deg,#050505,#111827);
+}
+
+.inicio .mini {
+    color: #58e7ff;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+.inicio h2 {
+    font-size: clamp(50px,8vw,90px);
+
+    margin-bottom: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a855f7,
+            #22d3ee,
+            #60a5fa
+        );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.inicio p {
+    max-width: 800px;
+
+    font-size: 21px;
+
+    color: #ddd;
+}
+
+
+/* ==============================
+   ÁREA DOS TEMAS
+================================ */
+
+.temas {
+    padding: 90px 20px;
+
+    background: #0b0b0b;
+}
+
+.temas > h2 {
+    text-align: center;
+
+    font-size: 42px;
+
+    margin-bottom: 55px;
+}
+
+.grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap: 25px;
+}
+
+
+/* ==============================
+   CARDS
+================================ */
+
+.card {
+    min-height: 340px;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.35s;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+.card h3 {
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #ddd;
+
+    line-height: 1.7;
+}
+
+.botao {
+    display: block;
+
+    padding: 14px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    margin-top: 25px;
+
+    transition: 0.3s;
+}
+
+.botao:hover {
+    transform: scale(1.04);
+}
+
+
+/* ==============================
+   TECNOLOGIA
+   TEMA: FUTURISTA / AZUL
+================================ */
+
+.card-tecnologia {
+
+    background:
+        radial-gradient(circle at 80% 10%, #00e5ff33, transparent 30%),
+        linear-gradient(145deg,#061923,#0b3344);
+
+    border: 1px solid #00d9ff;
+
+    box-shadow:
+        0 0 25px #00d9ff18;
+}
+
+.card-tecnologia h3 {
+    color: #20eaff;
+}
+
+.card-tecnologia .botao {
+    background: #087f9c;
+}
+
+
+/* ==============================
+   REDES SOCIAIS
+   TEMA: SOCIAL / ROSA
+================================ */
+
+.card-redes {
+
+    background:
+        radial-gradient(circle at 20% 10%, #ff3b8130, transparent 30%),
+        linear-gradient(145deg,#250a19,#4d1535);
+
+    border: 1px solid #ff4d91;
+
+    box-shadow:
+        0 0 25px #ff4d9118;
+}
+
+.card-redes h3 {
+    color: #ff70aa;
+}
+
+.card-redes .botao {
+    background: #d92d70;
+}
+
+
+/* ==============================
+   PRIVACIDADE
+   TEMA: SEGURANÇA / VERDE
+================================ */
+
+.card-privacidade {
+
+    background:
+        radial-gradient(circle at 80% 10%, #39ff8830, transparent 30%),
+        linear-gradient(145deg,#071b11,#123c26);
+
+    border: 1px solid #46e98b;
+
+    box-shadow:
+        0 0 25px #46e98b18;
+}
+
+.card-privacidade h3 {
+    color: #62f39c;
+}
+
+.card-privacidade .botao {
+    background: #16854c;
+}
+
+
+/* ==============================
+   INTELIGÊNCIA ARTIFICIAL
+   TEMA: NEON / ROXO
+================================ */
+
+.card-ia {
+
+    background:
+        radial-gradient(circle at 50% 0%, #a855f733, transparent 35%),
+        linear-gradient(145deg,#160a2c,#351263);
+
+    border: 1px solid #a855f7;
+
+    box-shadow:
+        0 0 30px #a855f720;
+}
+
+.card-ia h3 {
+    color: #c084fc;
+}
+
+.card-ia .botao {
+    background: #7735bd;
+}
+
+
+/* ==============================
+   USO CONSCIENTE
+   TEMA: NATUREZA / VERDE ÁGUA
+================================ */
+
+.card-consciente {
+
+    background:
+        radial-gradient(circle at 20% 10%, #2dd4bf30, transparent 30%),
+        linear-gradient(145deg,#06201d,#125047);
+
+    border: 1px solid #2dd4bf;
+
+    box-shadow:
+        0 0 25px #2dd4bf18;
+}
+
+.card-consciente h3 {
+    color: #5eead4;
+}
+
+.card-consciente .botao {
+    background: #168477;
+}
+
+
+/* ==============================
+   PÁGINAS INTERNAS
+================================ */
+
+.pagina {
+
+    min-height: 100vh;
+
+    padding: 100px 20px;
+}
+
+.conteudo {
+
+    max-width: 950px;
+
+    margin: auto;
+
+    padding: 55px;
+
+    border-radius: 25px;
+
+    background: rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(12px);
+}
+
+.conteudo h2 {
+
+    font-size: 55px;
+
+    margin-bottom: 25px;
+}
+
+.conteudo h3 {
+
+    font-size: 27px;
+
+    margin-top: 40px;
+
+    margin-bottom: 12px;
+}
+
+.conteudo p,
+.conteudo li {
+
+    color: #ddd;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.conteudo ul {
+
+    padding-left: 25px;
+}
+
+
+/* ==============================
+   TECNOLOGIA — PÁGINA
+================================ */
+
+#tecnologia {
+
+    background:
+        radial-gradient(circle at 10% 20%,#00bcd440,transparent 25%),
+        radial-gradient(circle at 90% 80%,#0077ff30,transparent 30%),
+        #031019;
+}
+
+#tecnologia .conteudo {
+
+    border: 2px solid #00d9ff;
+
+    box-shadow:
+        0 0 50px #00d9ff20;
+}
+
+#tecnologia h2 {
+
+    color: #22eaff;
+}
+
+#tecnologia h3 {
+
+    color: #38bdf8;
+}
+
+
+/* ==============================
+   REDES — PÁGINA
+================================ */
+
+#redes {
+
+    background:
+        radial-gradient(circle at 80% 15%,#ff008044,transparent 25%),
+        radial-gradient(circle at 10% 80%,#ff7a1830,transparent 25%),
+        #18060f;
+}
+
+#redes .conteudo {
+
+    border: 2px solid #ff4d91;
+
+    box-shadow:
+        0 0 50px #ff4d9120;
+}
+
+#redes h2 {
+
+    color: #ff70aa;
+}
+
+#redes h3 {
+
+    color: #fb7185;
+}
+
+
+/* ==============================
+   PRIVACIDADE — PÁGINA
+================================ */
+
+#privacidade {
+
+    background:
+        radial-gradient(circle at 50% 10%,#16a34a40,transparent 30%),
+        radial-gradient(circle at 90% 90%,#84cc1630,transparent 25%),
+        #04130b;
+}
+
+#privacidade .conteudo {
+
+    border: 2px solid #4ade80;
+
+    box-shadow:
+        0 0 50px #4ade8020;
+}
+
+#privacidade h2 {
+
+    color: #4ade80;
+}
+
+#privacidade h3 {
+
+    color: #86efac;
+}
+
+
+/* ==============================
+   IA — PÁGINA
+================================ */
+
+#ia {
+
+    background:
+        radial-gradient(circle at 50% 10%,#9333ea50,transparent 30%),
+        radial-gradient(circle at 20% 90%,#2563eb40,transparent 25%),
+        #0e071b;
+}
+
+#ia .conteudo {
+
+    border: 2px solid #a855f7;
+
+    box-shadow:
+        0 0 60px #a855f725;
+}
+
+#ia h2 {
+
+    color: #c084fc;
+}
+
+#ia h3 {
+
+    color: #a78bfa;
+}
+
+
+/* ==============================
+   USO CONSCIENTE — PÁGINA
+================================ */
+
+#consciente {
+
+    background:
+        radial-gradient(circle at 20% 10%,#14b8a640,transparent 30%),
+        radial-gradient(circle at 90% 90%,#22c55e30,transparent 30%),
+        #031512;
+}
+
+#consciente .conteudo {
+
+    border: 2px solid #2dd4bf;
+
+    box-shadow:
+        0 0 50px #2dd4bf20;
+}
+
+#consciente h2 {
+
+    color: #5eead4;
+}
+
+#consciente h3 {
+
+    color: #6ee7b7;
+}
+
+
+/* ==============================
+   BOTÃO VOLTAR
+================================ */
+
+.voltar {
+
+    display: inline-block;
+
+    margin-top: 45px;
+
+    padding: 13px 20px;
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    border: 1px solid #444;
+}
+
+.voltar:hover {
+
+    background: rgba(255,255,255,0.15);
+}
+
+
+/* ==============================
+   RODAPÉ
+================================ */
+
+footer {
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: #030303;
+
+    color: #888;
+}
+
+
+/* ==============================
+   CELULAR
+================================ */
+
+@media(max-width:600px) {
+
+    .inicio h2 {
+        font-size: 48px;
+    }
+
+    .conteudo {
+        padding: 28px;
+    }
+
+    .conteudo h2 {
+        font-size: 38px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <!-- =========================
-         MENU
-    ========================== -->
 
-    <header>
-        <div class="container">
-            <nav>
+<!-- =====================================================
+     MENU
+===================================================== -->
 
-                <div class="logo">
-                    DILEMA<span>DIGITAL</span>
-                </div>
+<header>
 
-                <ul class="menu">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">O Dilema</a></li>
-                    <li><a href="#redes">Redes Sociais</a></li>
-                    <li><a href="#privacidade">Privacidade</a></li>
-                    <li><a href="#ia">IA</a></li>
-                    <li><a href="#dilema">Quiz</a></li>
-                </ul>
+<h1>🌐 Dilema Digital</h1>
 
-            </nav>
-        </div>
-    </header>
+<nav>
 
+<a href="index.html">
+Início
+</a>
 
-    <!-- =========================
-         INÍCIO
-    ========================== -->
+<a href="index.html#tecnologia" target="_blank">
+💻 Tecnologia
+</a>
 
-    <section class="hero" id="inicio">
+<a href="index.html#redes" target="_blank">
+📱 Redes Sociais
+</a>
 
-        <div class="container hero-content">
+<a href="index.html#privacidade" target="_blank">
+🔒 Privacidade
+</a>
 
-            <h1>Dilema<br>Digital</h1>
+<a href="index.html#ia" target="_blank">
+🤖 Inteligência Artificial
+</a>
 
-            <p>
-                Tecnologia: até onde ela facilita nossas vidas
-                e quando começa a controlá-las?
-            </p>
+<a href="index.html#consciente" target="_blank">
+🧠 Uso Consciente
+</a>
 
-            <a href="#sobre" class="hero-button">
-                Explorar o tema ↓
-            </a>
+</nav>
 
-        </div>
+</header>
 
-    </section>
 
 
-    <!-- =========================
-         O QUE É
-    ========================== -->
+<!-- =====================================================
+     INÍCIO
+===================================================== -->
 
-    <section class="about" id="sobre">
+<section class="inicio">
 
-        <div class="container">
+<div class="mini">
+TRABALHO ESCOLAR
+</div>
 
-            <div class="section-title fade">
-                <h2>O que é o Dilema Digital?</h2>
+<h2>Dilema Digital</h2>
 
-                <p>
-                    Os desafios de viver em um mundo cada vez mais conectado.
-                </p>
-            </div>
+<p>
+Tecnologia: até onde ela facilita nossas vidas
+e quando começa a controlá-las?
+</p>
 
-            <div class="about-content fade">
+</section>
 
-                <p>
-                    A tecnologia transformou completamente a maneira como
-                    estudamos, trabalhamos, conversamos e consumimos
-                    informações. Porém, junto com seus benefícios surgem
-                    novos desafios.
-                </p>
 
-                <br>
 
-                <p>
-                    O <span class="highlight">Dilema Digital</span> representa
-                    justamente essa relação entre os benefícios da tecnologia
-                    e os problemas que podem surgir quando ela é utilizada
-                    de maneira excessiva ou irresponsável.
-                </p>
+<!-- =====================================================
+     TEMAS
+===================================================== -->
 
-                <br>
+<section class="temas">
 
-                <p>
-                    Redes sociais, inteligência artificial, privacidade,
-                    desinformação e dependência tecnológica são alguns dos
-                    principais temas desse debate.
-                </p>
+<h2>Explore o Dilema Digital</h2>
 
-            </div>
 
-        </div>
+<div class="grid">
 
-    </section>
 
+<!-- TECNOLOGIA -->
 
-    <!-- =========================
-         REDES SOCIAIS
-    ========================== -->
+<div class="card card-tecnologia">
 
-    <section id="redes">
+<div>
 
-        <div class="container">
+<h3>💻 Tecnologia</h3>
 
-            <div class="section-title fade">
+<p>
+A tecnologia transformou a educação,
+o trabalho, a comunicação e praticamente
+todos os aspectos da sociedade.
+</p>
 
-                <h2>Redes Sociais</h2>
+</div>
 
-                <p>
-                    Conexão, informação e entretenimento, mas também novos desafios.
-                </p>
+<a
+href="index.html#tecnologia"
+target="_blank"
+class="botao">
 
-            </div>
+Explorar Tecnologia →
 
+</a>
 
-            <div class="cards">
+</div>
 
-                <div class="card fade">
 
-                    <div class="card-icon">📱</div>
 
-                    <h3>Dependência</h3>
+<!-- REDES -->
 
-                    <p>
-                        O uso excessivo das redes sociais pode fazer com que
-                        as pessoas passem várias horas por dia conectadas,
-                        prejudicando outras atividades.
-                    </p>
+<div class="card card-redes">
 
-                </div>
+<div>
 
+<h3>📱 Redes Sociais</h3>
 
-                <div class="card fade">
+<p>
+As redes sociais aproximaram pessoas,
+mas também trouxeram novos desafios
+para a sociedade.
+</p>
 
-                    <div class="card-icon">👥</div>
+</div>
 
-                    <h3>Comparação Social</h3>
+<a
+href="index.html#redes"
+target="_blank"
+class="botao">
 
-                    <p>
-                        Fotos e vídeos mostram apenas partes da vida das
-                        pessoas, podendo criar expectativas irreais sobre
-                        aparência, dinheiro e sucesso.
-                    </p>
+Explorar Redes →
 
-                </div>
+</a>
 
+</div>
 
-                <div class="card fade">
 
-                    <div class="card-icon">🤖</div>
 
-                    <h3>Algoritmos</h3>
+<!-- PRIVACIDADE -->
 
-                    <p>
-                        Plataformas utilizam algoritmos para selecionar
-                        conteúdos que provavelmente irão chamar a atenção
-                        de cada usuário.
-                    </p>
+<div class="card card-privacidade">
 
-                </div>
+<div>
 
+<h3>🔒 Privacidade</h3>
 
-                <div class="card fade">
+<p>
+Nossos dados possuem grande valor.
+Descubra como proteger suas informações
+no ambiente digital.
+</p>
 
-                    <div class="card-icon">⚠️</div>
+</div>
 
-                    <h3>Cyberbullying</h3>
+<a
+href="index.html#privacidade"
+target="_blank"
+class="botao">
 
-                    <p>
-                        A internet pode facilitar ataques, humilhações e
-                        perseguições que ultrapassam o ambiente escolar
-                        ou social.
-                    </p>
+Proteger meus dados →
 
-                </div>
+</a>
 
+</div>
 
-                <div class="card fade">
 
-                    <div class="card-icon">📰</div>
 
-                    <h3>Fake News</h3>
+<!-- IA -->
 
-                    <p>
-                        Informações falsas podem se espalhar rapidamente,
-                        dificultando a identificação do que é verdadeiro.
-                    </p>
+<div class="card card-ia">
 
-                </div>
+<div>
 
+<h3>🤖 Inteligência Artificial</h3>
 
-                <div class="card fade">
+<p>
+A inteligência artificial está mudando
+a maneira como estudamos, trabalhamos
+e criamos.
+</p>
 
-                    <div class="card-icon">⏳</div>
+</div>
 
-                    <h3>Tempo de Tela</h3>
+<a
+href="index.html#ia"
+target="_blank"
+class="botao">
 
-                    <p>
-                        Passar muitas horas diante de telas pode reduzir o
-                        tempo dedicado a atividades físicas, estudos,
-                        descanso e convivência presencial.
-                    </p>
+Conhecer a IA →
 
-                </div>
+</a>
 
-            </div>
+</div>
 
-        </div>
 
-    </section>
 
+<!-- CONSCIENTE -->
 
-    <!-- =========================
-         PRIVACIDADE
-    ========================== -->
+<div class="card card-consciente">
 
-    <section class="about" id="privacidade">
+<div>
 
-        <div class="container">
+<h3>🧠 Uso Consciente</h3>
 
-            <div class="section-title fade">
+<p>
+Aprenda como aproveitar a tecnologia
+sem deixar que ela controle sua vida.
+</p>
 
-                <h2>Privacidade e Dados</h2>
+</div>
 
-                <p>
-                    O que acontece com as informações que compartilhamos?
-                </p>
+<a
+href="index.html#consciente"
+target="_blank"
+class="botao">
 
-            </div>
+Aprender →
 
+</a>
 
-            <div class="cards">
+</div>
 
-                <div class="card fade">
 
-                    <div class="card-icon">🔐</div>
+</div>
 
-                    <h3>Dados Pessoais</h3>
+</section>
 
-                    <p>
-                        Nome, localização, hábitos de navegação e outras
-                        informações podem ser coletados por serviços digitais.
-                    </p>
 
-                </div>
 
+<!-- =====================================================
+     TECNOLOGIA
+===================================================== -->
 
-                <div class="card fade">
+<section class="pagina" id="tecnologia">
 
-                    <div class="card-icon">🍪</div>
+<div class="conteudo">
 
-                    <h3>Cookies</h3>
+<h2>💻 Tecnologia</h2>
 
-                    <p>
-                        Sites podem utilizar cookies para armazenar informações
-                        sobre a navegação e melhorar ou personalizar serviços.
-                    </p>
+<p>
+A tecnologia está presente em praticamente
+todos os aspectos da vida moderna.
+Ela mudou a forma como estudamos,
+trabalhamos, nos comunicamos e acessamos
+informações.
+</p>
 
-                </div>
 
+<h3>🎓 Tecnologia na educação</h3>
 
-                <div class="card fade">
+<p>
+Computadores, celulares, plataformas
+educacionais e ferramentas digitais
+facilitaram o acesso ao conhecimento.
+Hoje é possível assistir aulas, pesquisar
+livros e aprender novas habilidades
+pela internet.
+</p>
 
-                    <div class="card-icon">👁️</div>
 
-                    <h3>Rastreamento</h3>
+<h3>💼 Tecnologia no trabalho</h3>
 
-                    <p>
-                        Diversas plataformas utilizam dados de navegação para
-                        entender os interesses dos usuários.
-                    </p>
+<p>
+Empresas utilizam sistemas digitais,
+automação e inteligência artificial
+para realizar tarefas e organizar
+informações.
+</p>
 
-                </div>
 
+<h3>🌎 Comunicação</h3>
 
-                <div class="card fade">
+<p>
+Mensagens instantâneas, chamadas de vídeo
+e redes sociais permitem que pessoas
+se comuniquem rapidamente mesmo estando
+em lugares diferentes.
+</p>
 
-                    <div class="card-icon">📷</div>
 
-                    <h3>Reconhecimento Facial</h3>
+<h3>⚠️ O outro lado</h3>
 
-                    <p>
-                        Tecnologias de reconhecimento facial podem facilitar
-                        serviços, mas também levantam discussões sobre
-                        privacidade e segurança.
-                    </p>
+<p>
+O excesso de tecnologia também pode causar
+distração, dependência, isolamento social
+e dificuldade de desconectar.
+</p>
 
-                </div>
 
-            </div>
+<a class="voltar" href="#inicio">
+↑ Voltar ao início
+</a>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 
-    <!-- =========================
-         INTELIGÊNCIA ARTIFICIAL
-    ========================== -->
 
-    <section class="ai-section" id="ia">
+<!-- =====================================================
+     REDES SOCIAIS
+===================================================== -->
 
-        <div class="container">
+<section class="pagina" id="redes">
 
-            <div class="section-title fade">
+<div class="conteudo">
 
-                <h2>Inteligência Artificial</h2>
+<h2>📱 Redes Sociais</h2>
 
-                <p>
-                    Uma das maiores transformações tecnológicas do nosso tempo.
-                </p>
+<p>
+As redes sociais mudaram completamente
+a maneira como as pessoas interagem,
+consomem notícias e compartilham suas vidas.
+</p>
 
-            </div>
 
+<h3>❤️ Conexão</h3>
 
-            <div class="ai-box fade">
+<p>
+Podemos conversar com amigos e familiares
+mesmo quando estamos distantes.
+</p>
 
-                <h3>🤖 Benefícios da IA</h3>
 
-                <ul>
-                    <li>Auxílio nos estudos e pesquisas.</li>
-                    <li>Automatização de tarefas.</li>
-                    <li>Auxílio na medicina.</li>
-                    <li>Criação e análise de informações.</li>
-                    <li>Aumento da produtividade.</li>
-                </ul>
+<h3>📸 Exposição</h3>
 
-                <br>
+<p>
+Muitas pessoas compartilham diariamente
+momentos de suas vidas, criando uma grande
+quantidade de informações pessoais disponíveis
+na internet.
+</p>
 
-                <h3>⚠️ Possíveis desafios</h3>
 
-                <ul>
-                    <li>Dependência excessiva da tecnologia.</li>
-                    <li>Plágio e uso inadequado em trabalhos escolares.</li>
-                    <li>Criação de informações falsas.</li>
-                    <li>Deepfakes.</li>
-                    <li>Questões relacionadas à privacidade.</li>
-                </ul>
+<h3>🧠 Comparação</h3>
 
-            </div>
+<p>
+O contato constante com imagens de vidas
+aparentemente perfeitas pode estimular
+comparações e expectativas irreais.
+</p>
 
-        </div>
 
-    </section>
+<h3>🚨 Cyberbullying</h3>
 
+<p>
+A internet também pode ser utilizada para
+agressões, humilhações e ataques contra
+outras pessoas.
+</p>
 
-    <!-- =========================
-         LADO POSITIVO
-    ========================== -->
 
-    <section>
+<h3>📰 Fake News</h3>
 
-        <div class="container">
+<p>
+Informações falsas podem se espalhar
+rapidamente. Por isso, é importante
+verificar a fonte antes de compartilhar.
+</p>
 
-            <div class="section-title fade">
 
-                <h2>O Lado Positivo da Tecnologia</h2>
+<a class="voltar" href="#inicio">
+↑ Voltar ao início
+</a>
 
-                <p>
-                    A tecnologia também oferece inúmeras oportunidades.
-                </p>
+</div>
 
-            </div>
+</section>
 
 
-            <div class="cards">
 
-                <div class="card fade">
-                    <div class="card-icon">🎓</div>
-                    <h3>Educação</h3>
-                    <p>
-                        Acesso a cursos, livros, aulas e ferramentas
-                        educacionais.
-                    </p>
-                </div>
+<!-- =====================================================
+     PRIVACIDADE
+===================================================== -->
 
+<section class="pagina" id="privacidade">
 
-                <div class="card fade">
-                    <div class="card-icon">🌎</div>
-                    <h3>Comunicação</h3>
-                    <p>
-                        Pessoas de diferentes lugares podem se comunicar
-                        instantaneamente.
-                    </p>
-                </div>
+<div class="conteudo">
 
+<h2>🔒 Privacidade</h2>
 
-                <div class="card fade">
-                    <div class="card-icon">💼</div>
-                    <h3>Trabalho</h3>
-                    <p>
-                        Ferramentas digitais permitem novas formas de
-                        trabalho e colaboração.
-                    </p>
-                </div>
+<p>
+Na internet, nossas informações possuem
+grande valor. Sites e aplicativos podem
+coletar diferentes tipos de dados.
+</p>
 
 
-                <div class="card fade">
-                    <div class="card-icon">🏥</div>
-                    <h3>Medicina</h3>
-                    <p>
-                        Tecnologias ajudam profissionais na prevenção,
-                        diagnóstico e tratamento de doenças.
-                    </p>
-                </div>
+<h3>🪪 Dados pessoais</h3>
 
+<p>
+Nome, idade, localização, fotos e hábitos
+digitais são exemplos de informações
+que podem ser utilizadas por serviços
+online.
+</p>
 
-                <div class="card fade">
-                    <div class="card-icon">🌐</div>
-                    <h3>Informação</h3>
-                    <p>
-                        Milhões de conteúdos educativos podem ser acessados
-                        rapidamente pela internet.
-                    </p>
-                </div>
 
+<h3>🔑 Senhas</h3>
 
-                <div class="card fade">
-                    <div class="card-icon">🚀</div>
-                    <h3>Inovação</h3>
-                    <p>
-                        Novas tecnologias possibilitam soluções para
-                        problemas que antes pareciam impossíveis.
-                    </p>
-                </div>
+<p>
+Utilizar senhas fortes e diferentes
+para cada serviço ajuda a diminuir
+os riscos de invasão.
+</p>
 
-            </div>
 
-        </div>
+<h3>📍 Localização</h3>
 
-    </section>
+<p>
+Alguns aplicativos podem solicitar acesso
+à localização do celular. É importante
+verificar se essa permissão realmente
+é necessária.
+</p>
 
 
-    <!-- =========================
-         DILEMA INTERATIVO
-    ========================== -->
+<h3>🍪 Cookies</h3>
 
-    <section class="dilema" id="dilema">
+<p>
+Cookies podem ser utilizados para armazenar
+informações sobre a navegação e ajudar
+sites a oferecer determinados recursos.
+</p>
 
-        <div class="container">
 
-            <div class="section-title fade">
+<h3>🛡️ Como se proteger?</h3>
 
-                <h2>O Grande Dilema</h2>
+<ul>
 
-                <p>
-                    Agora é sua vez de pensar.
-                </p>
+<li>Utilize senhas fortes.</li>
 
-            </div>
+<li>Ative a autenticação em dois fatores.</li>
 
+<li>Não compartilhe informações pessoais
+com desconhecidos.</li>
 
-            <div class="question-box fade">
+<li>Verifique as permissões dos aplicativos.</li>
 
-                <h3>
-                    Você aceitaria usar um aplicativo gratuito
-                    se ele coletasse seus dados pessoais?
-                </h3>
+<li>Evite links suspeitos.</li>
 
+</ul>
 
-                <div class="choices">
 
-                    <button class="choice"
-                        onclick="responder('Você considera que o benefício do serviço pode compensar o compartilhamento de dados, dependendo das informações coletadas.')">
+<a class="voltar" href="#inicio">
+↑ Voltar ao início
+</a>
 
-                        🔵 Sim, se o serviço for bom.
+</div>
 
-                    </button>
+</section>
 
 
-                    <button class="choice"
-                        onclick="responder('Uma alternativa é analisar quais dados são coletados e como eles serão utilizados antes de aceitar.')">
 
-                        🟡 Talvez, dependendo dos dados.
+<!-- =====================================================
+     INTELIGÊNCIA ARTIFICIAL
+===================================================== -->
 
-                    </button>
+<section class="pagina" id="ia">
 
+<div class="conteudo">
 
-                    <button class="choice"
-                        onclick="responder('Você coloca a privacidade como prioridade e prefere não compartilhar seus dados.')">
+<h2>🤖 Inteligência Artificial</h2>
 
-                        🔴 Não, minha privacidade é mais importante.
+<p>
+A inteligência artificial permite que
+computadores realizem tarefas que antes
+dependiam exclusivamente de capacidades
+humanas.
+</p>
 
-                    </button>
 
-                </div>
+<h3>🎓 Educação</h3>
 
+<p>
+Ferramentas de IA podem ajudar estudantes
+a compreender conteúdos, organizar ideias
+e estudar.
+</p>
 
-                <div id="resultado"></div>
 
-            </div>
+<h3>🏥 Medicina</h3>
 
-        </div>
+<p>
+Sistemas de inteligência artificial podem
+auxiliar profissionais na análise de
+informações e exames.
+</p>
 
-    </section>
 
+<h3>💼 Trabalho</h3>
 
-    <!-- =========================
-         USO CONSCIENTE
-    ========================== -->
+<p>
+A IA pode automatizar tarefas repetitivas
+e auxiliar profissionais em diversas áreas.
+</p>
 
-    <section>
 
-        <div class="container">
+<h3>🎨 Criatividade</h3>
 
-            <div class="section-title fade">
+<p>
+Ferramentas de IA também podem auxiliar
+na criação de textos, imagens, músicas
+e outros conteúdos.
+</p>
 
-                <h2>Como Usar a Tecnologia de Forma Consciente?</h2>
 
-                <p>
-                    Pequenas atitudes podem fazer diferença.
-                </p>
+<h3>⚠️ Desafios</h3>
 
-            </div>
+<p>
+É necessário verificar informações,
+proteger dados pessoais e compreender
+as limitações dessas ferramentas.
+</p>
 
 
-            <div class="tips">
+<a class="voltar" href="#inicio">
+↑ Voltar ao início
+</a>
 
-                <div class="tip fade">
+</div>
 
-                    <h3>🔎 Verifique as informações</h3>
+</section>
 
-                    <p>
-                        Antes de compartilhar uma notícia, procure verificar
-                        sua fonte e confirmar se a informação é verdadeira.
-                    </p>
 
-                </div>
 
+<!-- =====================================================
+     USO CONSCIENTE
+===================================================== -->
 
-                <div class="tip fade">
+<section class="pagina" id="consciente">
 
-                    <h3>⏰ Controle o tempo de tela</h3>
+<div class="conteudo">
 
-                    <p>
-                        Estabeleça limites para evitar que as telas ocupem
-                        grande parte do seu dia.
-                    </p>
+<h2>🧠 Uso Consciente</h2>
 
-                </div>
+<p>
+A tecnologia pode melhorar muito nossa
+vida, mas é importante utilizá-la
+de maneira equilibrada.
+</p>
 
 
-                <div class="tip fade">
+<h3>⏰ Controle o tempo</h3>
 
-                    <h3>🔒 Proteja seus dados</h3>
+<p>
+Evite passar tempo excessivo em celulares,
+jogos e redes sociais.
+</p>
 
-                    <p>
-                        Utilize senhas fortes e evite compartilhar informações
-                        pessoais desnecessariamente.
-                    </p>
 
-                </div>
+<h3>🔎 Verifique informações</h3>
 
+<p>
+Antes de compartilhar uma notícia,
+procure descobrir se ela realmente
+vem de uma fonte confiável.
+</p>
 
-                <div class="tip fade">
 
-                    <h3>🤖 Use a IA com responsabilidade</h3>
+<h3>🔐 Proteja seus dados</h3>
 
-                    <p>
-                        Utilize ferramentas de inteligência artificial como
-                        apoio, mas mantenha seu próprio pensamento e criatividade.
-                    </p>
+<p>
+Evite compartilhar informações pessoais
+sem necessidade.
+</p>
 
-                </div>
 
+<h3>🤖 Utilize IA com responsabilidade</h3>
 
-                <div class="tip fade">
+<p>
+Ferramentas de inteligência artificial
+podem ajudar bastante, mas as informações
+geradas devem ser verificadas.
+</p>
 
-                    <h3>💬 Respeite outras pessoas</h3>
 
-                    <p>
-                        O fato de uma conversa acontecer pela internet não
-                        elimina a necessidade de respeito.
-                    </p>
+<h3>🤝 Respeite as pessoas</h3>
 
-                </div>
+<p>
+O respeito deve existir tanto no ambiente
+presencial quanto no ambiente digital.
+</p>
 
 
-                <div class="tip fade">
+<h3>⚖️ O grande dilema</h3>
 
-                    <h3>🧠 Pense antes de clicar</h3>
+<p>
+A questão não é simplesmente escolher
+entre usar ou não usar tecnologia.
+O verdadeiro desafio é aprender a utilizar
+seus benefícios sem permitir que ela
+controle completamente nossas vidas.
+</p>
 
-                    <p>
-                        Questione links, mensagens, anúncios e pedidos de
-                        informações antes de interagir.
-                    </p>
 
-                </div>
+<a class="voltar" href="#inicio">
+↑ Voltar ao início
+</a>
 
-            </div>
+</div>
 
-        </div>
+</section>
 
-    </section>
 
 
-    <!-- =========================
-         CONCLUSÃO
-    ========================== -->
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
 
-    <section class="conclusion">
+<footer>
 
-        <div class="container">
+<p>
+🌐 Dilema Digital
+</p>
 
-            <div class="section-title fade">
+<p>
+Trabalho escolar — Tecnologia e Sociedade
+</p>
 
-                <h2>Conclusão</h2>
+</footer>
 
-            </div>
-
-
-            <p class="fade">
-
-                O problema não está simplesmente em usar ou não usar
-                tecnologia. O verdadeiro dilema está em como fazemos
-                escolhas dentro de um mundo cada vez mais digital.
-
-            </p>
-
-
-            <p class="final-text fade">
-
-                A tecnologia deve ser uma ferramenta para nós,
-                e não nós uma ferramenta para ela.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         RODAPÉ
-    ========================== -->
-
-    <footer>
-
-        <p>
-            Trabalho escolar — <span>Dilema Digital</span>
-        </p>
-
-        <p>
-            Tecnologia • Sociedade • Privacidade • Inteligência Artificial
-        </p>
-
-    </footer>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-
-    <script>
-
-        /* DILEMA INTERATIVO */
-
-        function responder(mensagem) {
-
-            const resultado = document.getElementById("resultado");
-
-            resultado.innerHTML = mensagem;
-
-        }
-
-
-        /* ANIMAÇÕES AO ROLAR A PÁGINA */
-
-        const elementos = document.querySelectorAll(".fade");
-
-        const observer = new IntersectionObserver(
-
-            (entries) => {
-
-                entries.forEach((entry) => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("show");
-
-                    }
-
-                });
-
-            },
-
-            {
-                threshold: 0.15
-            }
-
-        );
-
-
-        elementos.forEach((elemento) => {
-
-            observer.observe(elemento);
-
-        });
-
-    </script>
 
 </body>
 </html>
